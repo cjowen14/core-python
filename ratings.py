@@ -50,9 +50,24 @@ def change_random():
     dictionary[random_choice[0]] = new_rating;
     main()
 
+#allow user to select a restaurant to change the rating
+def change_selected():
+    list = dictionary.items()
+    sorted_list = sorted(list)
+    for i in sorted_list:
+        print(i[0], "is rated at", i[1])
+    user_choice = input("Please type the name of the restaurant you would like to update:\n")
+    print("You have selected", user_choice)
+    new_rating = input("What would you like to change the rating to?\n")
+    for x in dictionary:
+        if x == user_choice:
+            dictionary[x] = new_rating
+    print("Rating for", user_choice, "has been updated!")
+    main()
+
+#user input for what they would like to do
 def main():
-    #user input for what they would like to do
-    user_choice = int(input("What would you like to do? (Enter the number)\n 1. See all ratings\n 2. Add a new restaurant\n 3. Change Random Rating\n 4. Quit\n"))
+    user_choice = int(input("What would you like to do? (Enter the number)\n 1. See all ratings\n 2. Add a new restaurant\n 3. Change Random Rating\n 4. Choose a restaurant to update a rating\n 5. Quit\n"))
     if user_choice == 1:
         see_ratings()
     elif user_choice == 2:
@@ -60,13 +75,11 @@ def main():
     elif user_choice == 3:
         change_random()
     elif user_choice == 4:
+        change_selected()
+    elif user_choice == 5:
         print("Thank you for visiting!")
     else:
         print("Invalid Entry.")
         main()
 
 main()
-
-
-
-
