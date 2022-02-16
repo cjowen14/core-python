@@ -1,17 +1,18 @@
-import random
+import random, os, sys
 
 """Restaurant rating lister."""
 
 
 # put your code here
 
-
-#import txt file
 dictionary = {}
-with open("scores.txt") as scores:
-    for line in scores:
-        (key, val) = line.rstrip("\n").split(":")
-        dictionary[key] = val
+#import txt file
+def open_dictionary(file_input):
+    with open(file_input) as scores:
+        for line in scores:
+            (key, val) = line.rstrip("\n").split(":")
+            dictionary[key] = val
+    main(file_input)
 
 #get new restaurant name        
 def rest_name():
@@ -66,8 +67,8 @@ def change_selected():
     main()
 
 #user input for what they would like to do
-def main():
-    user_choice = int(input("What would you like to do? (Enter the number)\n 1. See all ratings\n 2. Add a new restaurant\n 3. Change Random Rating\n 4. Choose a restaurant to update a rating\n 5. Quit\n"))
+def main(file_input):
+    user_choice = int(input("What would you like to do? You are currently in " + file_input + " (Enter the number)\n 1. See all ratings\n 2. Add a new restaurant\n 3. Change Random Rating\n 4. Choose a restaurant to update a rating\n 5. Choose another txt file\n 6. Quit\n"))
     if user_choice == 1:
         see_ratings()
     elif user_choice == 2:
@@ -77,9 +78,26 @@ def main():
     elif user_choice == 4:
         change_selected()
     elif user_choice == 5:
+        file_choice()
+    elif user_choice == 6:
         print("Thank you for visiting!")
     else:
         print("Invalid Entry.")
         main()
 
-main()
+def file_choice():
+    dirs = os.listdir()
+    print("List of current files:")
+    for i in dirs:
+        if not i == '.git' and not i == 'ratings.py':
+            print(i)
+    file_input = input("Which file would you like to access?\n")
+    isFile = os.path.isfile(file_input)
+    if isFile:
+        dictionary.clear()
+        open_dictionary(file_input)
+    else:
+        print("Must enter an exsisting file.")
+        file_choice()
+  
+file_choice()

@@ -1,0 +1,12 @@
+Olive Garden:4
+Texas Roadhouse:3
+Arbys:3
+Ruby River:1
+Tony Burgers:5
+Culvers:2
+Jimmy Johns:2
+Zhangs:1
+Ogden Pizzeria:3
+Sonic:5
+KFC:3
+Chipotle:2
