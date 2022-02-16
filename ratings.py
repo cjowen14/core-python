@@ -1,3 +1,5 @@
+import random
+
 """Restaurant rating lister."""
 
 
@@ -38,14 +40,26 @@ def see_ratings():
     print("\n")
     main()
 
+#provide user with a random restaurant and let them change the rating
+def change_random():
+    list = dictionary.items()
+    sorted_list = sorted(list)
+    random_choice = random.choice(sorted_list)
+    print("Your restaurant is", random_choice[0], "which has a current rating of", random_choice[1])
+    new_rating = input("What would you like to change the rating to?\n")
+    dictionary[random_choice[0]] = new_rating;
+    main()
+
 def main():
     #user input for what they would like to do
-    user_choice = int(input("What would you like to do? (Enter the number)\n 1. See all ratings\n 2. Add a new restaurant\n 3. Quit\n"))
+    user_choice = int(input("What would you like to do? (Enter the number)\n 1. See all ratings\n 2. Add a new restaurant\n 3. Change Random Rating\n 4. Quit\n"))
     if user_choice == 1:
         see_ratings()
     elif user_choice == 2:
         rest_name()
-    elif user_choice== 3:
+    elif user_choice == 3:
+        change_random()
+    elif user_choice == 4:
         print("Thank you for visiting!")
     else:
         print("Invalid Entry.")
